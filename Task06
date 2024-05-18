@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Components Order Form</title>
+    
+    <!-- Link to Bootstrap CSS framework -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+       
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #c4aec5;
+        }
+
+        header, footer {
+            background-color:rgb(158, 92, 158);
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        section {
+            padding: 50px;
+        }
+
+        .order-details,
+        .order-summary {
+            display: inline-block;
+            vertical-align: top;
+            width: 45%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-summary {
+            margin-left: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            
+        }
+
+        input[type="number"] {
+            width: 50px;
+        }
+
+        button {
+            padding: 5px 8px;
+            font-size : 14px;
+            background-color: rgb(158, 92, 158);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top : 10px;
+        }
+
+        button:hover {
+            background-color: rgb(50, 21, 50);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+        /* styles.css */
+
+:root {
+    --background-color: #c4aec5;
+    --text-color: black;
+}
+
+.dark-mode {
+    --background-color: rgb(58, 25, 58);
+    --text-color: black;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#mode-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <button id="mode-toggle">Toggle Light/Dark Mode</button>
+    <script src="script.js"></script>
+    <header>
+        <h1>Computer Components Order Form</h1>
+    </header>
+   <!-- I created a section for the possible components -->
+    <section>
+        <div class="order-details">
+            <h2>Order Details</h2>
+            <!-- I created a form for the first component : Motherboard, in this way the customer can choose from a list of motherboards-->
+            <form id="Motherboard-form">
+                <div class="form-group">
+                    <label for="Motherboard">Motherboard:</label>
+                    <select id="Motherboard" class="form-control">
+                        <option value="0">Select Motherboard </option>
+                        <option value="100">Motherboard 1  (100$)</option>
+                        <option value="200">Motherboard 2 (200$)</option>
+                        <option value="300">Motherboard 3 (300$)</option>
+                        <option value="400">Motherboard 4 (400$)</option>
+                    </select>
+                </div>
+                 <!-- Using this the customer can choose the quantity of Motherboards -->
+                <div class="form-group">
+                    <label for="Motherboard-quantity">Quantity:</label>
+                    <input type="number" id="Motherboard-quantity" name="Motherboard-quantity" min="1" value="1" class="form-control">
+                </div>
+
+                <button type="submit">Add Motherboard to Cart</button>
+            </form>
+             <!-- I created a form for the second component : keyboard, in this way the customer can choose from a list of keyboards-->
+            <form id="Keyboard-form">
+                <div class="form-group">
+                    <label for="Keyboard">Keyboard:</label>
+                    <select id="Keyboard" class="form-control">
+                        <option value="0">Select Keyboard</option>
+                        <option value="150">Keyboard 1 ( 150$)</option>
+                        <option value="250">Keyboard 2 (250$)</option>
+                        <option value="350">Keyboard 3 (350$)</option>
+                        <option value="450">Keyboard 4 (450$)</option>
+                    </select>
+                </div>
+                 <!-- Using this the customer can choose the quantity of Keyboards -->
+                <div class="form-group">
+                    <label for="Keyboard-quantity">Quantity:</label>
+                    <input type="number" id="Keyboard-quantity" name="Keyboard-quantity" min="1" value="1" class="form-control" >
+                </div>
+
+                <button type="submit">Add Keyboard to Cart</button>
+            </form>
+             <!-- I created a form for the third component : RAM, in this way the customer can choose from a list of RAMs-->
+            <form id="ram-form" >
+                <div class="form-group">
+                    <label for="ram">RAM:</label>
+                    <select id="ram" class="form-control">
+                        <option value="0">Select RAM</option>
+                        <option value="50">RAM 1 (50$)</option>
+                        <option value="100">RAM 2 (100$)</option>
+                        <option value="150">RAM 3 (150$)</option>
+                    </select>
+                </div>
+                 <!-- Using this the customer can choose the quantity of RAMs -->
+                <div class="form-group">
+                    <label for="ram-quantity">Quantity:</label>
+                    <input type="number" id="ram-quantity" name="ram-quantity" min="1" value="1" class="form-control">
+                </div>
+
+                <button type="submit">Add RAM to Cart</button>
+            </form>
+        </div>
+         <!-- I've created a section where the order summary will be displayed -->
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <ul id="summary-list"></ul>
+            <div class="component">
+                <label for="total">Total:</label>
+                <span id="total">$0</span>
+            </div>
+        <!-- I've created a section where the customer should put the delivery address -->
+            <div class="delivery-address">
+                <label for="delivery-address">Delivery Address:</label>
+                <input type="text" id="delivery-address" class="form-control">
+            </div>
+        <!-- I've created a section where the customer should put their email or phone number ( for communication)  -->
+            <div class="Communication">
+                <label for="communication">Email address or Phone number:</label>
+                <input type="text" id="communication" class="form-control">
+            </div>
+        <!-- I've created these two buttons to remove an item or to checkout -->  
+            <button id="remove-item-btn">Remove Item</button>
+            <button id="checkout-btn">Checkout</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; IU Internationale hochschule</p>
+    </footer>
+
+    <script>
+        // Here we're adding an eventListener to the "DOMContentLoaded" event of the document object
+        document.addEventListener("DOMContentLoaded", function() {
+            const MotherboardForm = document.getElementById('Motherboard-form');
+            const KeyboardForm = document.getElementById('Keyboard-form');
+            const ramForm = document.getElementById('ram-form');
+            const summaryList = document.getElementById('summary-list');
+            const totalSpan = document.getElementById('total');
+        // This function displays the items selected, the quantity and the total price
+            let cartItems = [];
+
+            function updateSummary() {
+                summaryList.innerHTML = '';
+                let total = 0;
+
+                cartItems.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = item.quantity + ' x ' + item.name + ' - $' + item.price * item.quantity;
+                    summaryList.appendChild(listItem);
+                    total += item.price * item.quantity;
+                });
+
+                totalSpan.textContent = '$' + total;
+            }
+            // This funtion adds the name, price and quantity of the chosen article to the Cart 
+            function addToCart(name, price, quantity) {
+                cartItems.push({
+                    name: name,
+                    price: price,
+                    quantity: quantity
+                });
+                updateSummary();
+            }
+            //Here we're adding an EvenListener to the submit event
+            MotherboardForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+            // This code enables retrieving the name, price and quantity of motherboards
+                const MotherboardSelect = document.getElementById('Motherboard');
+                const MotherboardQuantity = document.getElementById('Motherboard-quantity').value;
+                const MotherboardPrice = parseFloat(MotherboardSelect.value);
+                const MotherboardName = MotherboardSelect.options[MotherboardSelect.selectedIndex].text;
+            // This way we ensure that the addToCart function is executed only if the motherboardPrice is not equal to zero
+                if (MotherboardPrice !== 0) {
+                    addToCart(MotherboardName, MotherboardPrice, MotherboardQuantity);
+                }
+
+                MotherboardSelect.selectedIndex = 0;
+            });
+            // The same steps used for motherboard are repeated for keyboard and RAM
+            KeyboardForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const KeyboardSelect = document.getElementById('Keyboard');
+                const KeyboardQuantity = document.getElementById('Keyboard-quantity').value;
+                const KeyboardPrice = parseFloat(KeyboardSelect.value);
+                const KeyboardName = KeyboardSelect.options[KeyboardSelect.selectedIndex].text;
+
+                if (KeyboardPrice !== 0) {
+                    addToCart(KeyboardName, KeyboardPrice, KeyboardQuantity);
+                }
+
+                KeyboardSelect.selectedIndex = 0;
+            });
+
+            ramForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const ramSelect = document.getElementById('ram');
+                const ramQuantity = document.getElementById('ram-quantity').value;
+                const ramPrice = parseFloat(ramSelect.value);
+                const ramName = ramSelect.options[ramSelect.selectedIndex].text;
+
+                if (ramPrice !== 0) {
+                    addToCart(ramName, ramPrice, ramQuantity);
+                }
+
+                ramSelect.selectedIndex = 0;
+            });
+            // If the button remove Item is pressed, the last selected element is deleted from the list
+            document.getElementById('remove-item-btn').addEventListener('click', function() {
+                cartItems.pop();
+                updateSummary();
+            });
+            // This is for the checkout button
+            document.getElementById('checkout-btn').addEventListener('click', function() {
+                alert('Checkout - Total: $' + totalSpan.textContent.substring(1));
+            });
+        });
+       
+    // Here we're adding an eventListner to the DOMContentLoaded event
+     document.addEventListener('DOMContentLoaded', () => {
+         const toggleButton = document.getElementById('mode-toggle');
+         const body = document.body;
+
+    // Check if a mode is already saved in localStorage, If it exists it retrieves it and assigns it to the savedMode
+    const savedMode = localStorage.getItem('mode');
+    // If a saved mode is found, it adds it as a class to the body element
+    if (savedMode) {
+        body.classList.add(savedMode);
+    }
+   // Here we're adding an EventListener to the click event 
+    toggleButton.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const currentMode = body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
+        localStorage.setItem('mode', currentMode);
+       });
+    });
+
+    </script>
+</body>
+</html>
